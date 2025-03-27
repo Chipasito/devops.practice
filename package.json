@@ -2,10 +2,10 @@
   "name": "mi-api",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "build": "Echo 'No build step need' " 
-  },
+"scripts": {
+  "start": "node index.js",
+  "build": "echo 'No build step needed'"
+},
   "dependencies": {
     "express": "^4.17.1",
     "pg": "^8.7.1"
