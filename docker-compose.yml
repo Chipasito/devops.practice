@@ -1,25 +1,45 @@
-version: "3.8"
-services:
-  api:
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: "postgres://postgres:password@db:5432/miapp"
+version: '3.8'
 
+services:
   db:
     image: postgres:15
-    restart: always
+    container_name: proyecto1-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: miapp
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
-volumes:
-  postgres_data:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyecto1-api
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: miapp
+      DB_PORT: 5432
+      PORT: 3000
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: proyecto1-tests
+    environment:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: password
+      DB_NAME: miapp
+      DB_PORT: 5432
+      PORT: 4000
+    depends_on:
+      - db
+      - api
