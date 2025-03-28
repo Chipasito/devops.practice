@@ -2,13 +2,18 @@
   "name": "mi-api",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
-  "start": "node index.js",
-  "build": "echo 'No build step needed'"
-},
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo 'No build step needed'",
+    "test": "jest"
+  },
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.17.1",
     "pg": "^8.7.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0"
+  }
 }
