@@ -1,4 +1,9 @@
 # Docker
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'filePath'
+    scriptPath: '$(System.DefaultWorkingDirectory)'
+    failOnStderr: true
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
